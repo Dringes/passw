@@ -1,0 +1,51 @@
+SCORE = 0
+
+
+my_str = input('Ваш пароль: ')  
+print(my_str)
+
+def is_very_long(my_str):
+    return len(my_str) >= 12
+
+def has_digit(my_str):
+    return any(passw.isdigit() for passw in my_str)
+
+
+def has_lower_letters(my_str):
+    return any(passw.islower() for passw in my_str)
+
+
+def has_upper_letters(my_str):
+    return any(passw.isupper() for passw in my_str)
+
+
+def has_symbols(my_str):
+    return any(passw.isalpha() for passw in my_str)
+
+
+if is_very_long(my_str):
+    print('Пароль достаточно длинный')
+else:  
+    print('Пароль слишком короткий')
+if has_digit(my_str):
+    print('Есть цифры')
+else:
+    print('Нет цифр')
+
+
+for passw in my_str:      
+    if passw.isalpha():
+        print(passw,'Буква')
+    elif passw.isdigit():
+       print(passw,'Цифра')
+if has_symbols(my_str):
+    print('Есть символы')
+else:
+    print('Нет символов')
+
+    
+CHECKS = [is_very_long, has_digit, has_lower_letters, has_upper_letters, has_symbols]
+for check in CHECKS:
+        if check(my_str):
+         SCORE += 2
+print('Рейтинг:', SCORE)
