@@ -1,41 +1,42 @@
-SCORE = 0
-
-my_str = input('Ваш пароль: ')
-
-
-def is_very_long(my_str):
-    return len(my_str) > 12
+def is_very_long(password: str) -> bool:
+    return len(password) >= 12
 
 
-def has_digit(my_str):
-    return any(passw.isdigit() for passw in my_str)
+def has_digit(password: str) -> bool:
+    return any(ch.isdigit() for ch in password)
 
 
-def has_lower_letters(my_str):
-    return any(passw.islower() for passw in my_str)
+def has_lower_letters(password: str) -> bool:
+    return any(ch.islower() for ch in password)
 
 
-def has_upper_letters(my_str):
-    return any(passw.isupper() for passw in my_str)
+def has_upper_letters(password: str) -> bool:
+    return any(ch.isupper() for ch in password)
 
 
-def has_symbols(my_str):
-    return any(
-        (not passw.isalpha()) and (not passw.isdigit())
-        for passw in my_str
-    )
+def has_symbols(password: str) -> bool:
+    return any((not ch.isalpha()) and (not ch.isdigit()) for ch in password)
 
 
-CHECKS = [
+CHECKS = (
     is_very_long,
     has_digit,
     has_lower_letters,
     has_upper_letters,
     has_symbols,
-]
+)
 
-for check in CHECKS:
-    if check(my_str):
-        SCORE += 2
 
-print('Рейтинг:', SCORE)
+def main() -> None:
+    password = input("Ваш пароль: ")
+    score = 0
+
+    for check in CHECKS:
+        if check(password):
+            score += 2
+
+    print("Рейтинг:", score)
+
+
+if __name__ == "__main__":
+    main()
