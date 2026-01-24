@@ -15,7 +15,8 @@ def has_upper_letters(password: str) -> bool:
 
 
 def has_symbols(password: str) -> bool:
-    return any((not ch.isalpha()) and (not ch.isdigit()) for ch in password)
+    has_non_alnum = any(not ch.isalnum() for ch in password)
+    return has_non_alnum
 
 
 CHECKS = (
