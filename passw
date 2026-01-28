@@ -15,24 +15,22 @@ def has_upper_letters(password: str) -> bool:
 
 
 def has_symbols(password: str) -> bool:
-    has_non_alnum = any(not ch.isalnum() for ch in password)
-    return has_non_alnum
-
-
-CHECKS = (
-    is_very_long,
-    has_digit,
-    has_lower_letters,
-    has_upper_letters,
-    has_symbols,
-)
+    return any(not ch.isalnum() for ch in password)
 
 
 def main() -> None:
     password = input("Ваш пароль: ")
     score = 0
 
-    for check in CHECKS:
+    checks = (
+        is_very_long,
+        has_digit,
+        has_lower_letters,
+        has_upper_letters,
+        has_symbols,
+    )
+
+    for check in checks:
         if check(password):
             score += 2
 
